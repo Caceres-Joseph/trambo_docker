@@ -1,0 +1,122 @@
+Day 1
+
+----------------------------------------
+docker search busybox
+docker pull busybox
+
+2. Docker images
+Images from local machine
+docker images
+
+3. Docker rmi
+Delete images
+docker rmi jenkinsnew
+
+Day 2
+
+----------------------------------------
+Docker run
+docker run --name some-nginx -d -p 8080:80nginx
+-d backround 
+Docker ps
+
+if is execute whatever container
+docker ps
+Docker exec
+docker exec -it 0asd090 /bin/bash
+Docker rm
+Docker kill
+Docker start
+Docker stop
+
+Day 3
+
+----------------------------------------
+--link
+docker run --name some-wordpress --link some-mysql:mysql -p 8080:80 -d wordpress 34534534jlj345
+--p
+-d
+-e
+--volumes from
+-v
+docker run --name datastore2 -v /root:datatutorial -d busybox sleep 5000
+-v /root:/carpetaEnCOntenedor
+-v /root:/datadra:ro read only
+
+Day 4
+
+----------------------------------------
+-H
+diferentes host
+docker -H 10.0.4 images
+Portainer.io
+
+EJERCICIO
+
+----------------------------------------
+
+docker pull ubuntu
+docker run --name contenedor1 ubuntu
+docker exec -it contenedor1 /bin/bash
+docker ps -a 
+	//Containers that were finalized
+docker inspect contenedor1
+	//
+docker logs instancia1
+
+docker pull mongo:4.0.4
+docker run --name mongoInstancia2 -d -p 27017-27019:27017-27019 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin mongo:4.0.4 sleep 600
+
+docker run --name mongoInstancia2 -d -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin mongo
+
+docker exec -it mongoInstancia2 bash
+
+mongo --username admin --password admin
+
+docker run --name web2 -p 8080:80 -v /web/html:/usr/share/nginx/html:ro -d nginx
+
+
+
+SWARM
+----------------------------------------
+docker swarm init --advertise-addr 10.0.23.3
+docker service create --name redis --replicas=0 redis
+docker service ps
+docker service update --replication = 16 redis
+docker kill $(docker ps -aq)
+
+docker service create --name redis --replicas=11 redis
+docker  service ls
+
+
+DOCKER COMPOSE
+----------------------------------------
+docker compose up -d
+docker-compose down
+docker service update --replicas= 12 wordP_wordpress
+
+
+wordpress:
+	image:wordpress
+	links:
+		- myslq: mysql
+	ports:
+		- 8080: 80
+mysql:
+	image: mysql
+	eviroment:
+		- MYSQL_ROOT_PASSWORD = password
+
+
+
+
+DOCKER AZURE
+----------------------------------------
+
+
+
+
+
+
+
+
