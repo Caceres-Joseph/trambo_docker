@@ -2,6 +2,10 @@ FROM alpine:3.7
 
 LABEL maintainer="Joseph Cáceres<josephccaceres@gmail.com>"
 
+# AWS credentials
+ARG aws_access_key_id
+ARG aws_secret_access_key
+
 # Updating package database
 RUN apk update
 
@@ -22,7 +26,7 @@ RUN apk -v --update add \
     rm /var/cache/apk/*
 
 # AWS Credentials
-RUN aws --profile default configure set aws_access_key_id "AKIAXFHK42N5EBE3IE2A"
-RUN aws --profile default configure set aws_secret_access_key "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"
+RUN aws --profile default configure set aws_access_key_id ${aws_access_key_id} 
+RUN aws --profile default configure set aws_secret_access_key ${aws_secret_access_key} 
 
 ENTRYPOINT ["aws"]
