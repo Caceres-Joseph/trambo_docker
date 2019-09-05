@@ -1,0 +1,18 @@
+
+
+docker pull alpine
+
+
+docker run -it --rm alpine /bin/sh
+
+docker build -t trambo_docker:v1 .
+
+
+aws configure set aws_access_key_id: 'AKIAXFHK42N5EBE3IE2A'
+aws configure set aws_secret_access_key: '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'
+aws configure default_region_name: 
+aws configure default_output_format: None 
+
+
+aws --profile default configure set aws_access_key_id "AKIAXFHK42N5EBE3IE2A"
+aws --profile default configure set aws_secret_access_key "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"

@@ -21,4 +21,8 @@ RUN apk -v --update add \
     apk -v --purge del py-pip && \
     rm /var/cache/apk/*
 
+# AWS Credentials
+RUN aws --profile default configure set aws_access_key_id "AKIAXFHK42N5EBE3IE2A"
+RUN aws --profile default configure set aws_secret_access_key "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"
+
 ENTRYPOINT ["aws"]
