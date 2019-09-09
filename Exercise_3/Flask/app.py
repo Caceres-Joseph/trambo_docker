@@ -10,9 +10,8 @@ app = Flask(__name__)
 #---------------------
 #Connect 
 r = redis.Redis(
-    host='localhost',
-    port=6379, 
-    password='')
+    host='redis',
+    port=6379 )
 
 #Clear
 r.flushdb()
