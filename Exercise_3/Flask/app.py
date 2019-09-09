@@ -1,32 +1,45 @@
 from flask import Flask, render_template, request, redirect
 from flask_restful import Resource, Api
+import redis
 
 app = Flask(__name__)
 
 
 #+--------------------
-# Index
+# Redis
+#---------------------
+#Connect 
+r = redis.Redis(
+    host='localhost',
+    port=6379, 
+    password='')
+
+#Clear
+r.flushdb()
+
+
+#+--------------------
+# Page 
 #---------------------
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", data=r.scan_iter(), r=r )
 
 
 
 #+--------------------
-# Insert data
+# Post method
 #---------------------
 @app.route('/handle_data', methods=['POST'])
 def handle_data():
-    fName = request.form['fName']
-    print(fName)
+    dpi = request.form['dpi']
+    name = request.form['name']
+    r.set(dpi,name)
     return redirect('/')
  
-
-    # your code
-    # return a response
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
 
  
+
