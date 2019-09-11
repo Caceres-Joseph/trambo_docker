@@ -1,15 +1,6 @@
-FROM python:2.7
+FROM nginx
 
 LABEL maintainer="Joseph Cáceres<josephccaceres@gmail.com>"
 
-COPY . /app
-WORKDIR /app
+COPY ./static /usr/share/nginx/html
 
-# Install dependences
-RUN pip install -U Flask
-RUN pip install -U flask_restful
-RUN pip install -U redis
-
-
-ENTRYPOINT ["python"]
-CMD ["app.py"]
